@@ -70,17 +70,15 @@ public class SceneLoader : MonoBehaviour
 	{
 		_currentlyLoadedScene = currentlyOpenedLevel;
 
-		/*
 		if (_currentlyLoadedScene.sceneType == GameSceneSO.GameSceneType.Level)
 		{
-			//Gameplay managers is loaded synchronously
+			// Gameplay managers is loaded synchronously
 			_gameplayManagerLoadingOpHandle = _gameplayScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
 			_gameplayManagerLoadingOpHandle.WaitForCompletion();
 			_gameplayManagerSceneInstance = _gameplayManagerLoadingOpHandle.Result;
 
 			StartGameplay();
 		}
-		*/
 	}
 #endif
 
@@ -201,6 +199,11 @@ public class SceneLoader : MonoBehaviour
 
 		_fadeRequestChannel.FadeIn(_fadeDuration);
 
+		StartGameplay();
+	}
+
+	private void StartGameplay()
+	{
 		_onSceneReady.RaiseEvent();
 	}
 }

@@ -13,6 +13,9 @@ public class EditorColdStartup : MonoBehaviour
 {
 #if UNITY_EDITOR
 
+    [SerializeField]
+    private GameSceneSO _thisSceneSO = default;
+
     [SerializeField] 
     private GameSceneSO _persistentManagersSO = default;
 
@@ -48,7 +51,14 @@ public class EditorColdStartup : MonoBehaviour
 
     private void OnNotifyChannelLoaded(AsyncOperationHandle<LoadEventChannelSO> obj)
 	{
-        _onSceneReadyChannel.RaiseEvent();
+        if ( _thisSceneSO != null )
+        {
+            obj.Result.RaiseEvent(_thisSceneSO);
+        }
+        else
+        {
+            _onSceneReadyChannel.RaiseEvent();
+        }
     }
 
 #endif

@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06368cb320f9b0147b2569e528fa34cd, type: 3}
-  m_Name: NewMenu
+  m_Script: {fileID: 11500000, guid: 7e4cf7495d9e14e48bd5b9d07cea96e9, type: 3}
+  m_Name: GameplayLevel
   m_EditorClassIdentifier: 
-  _guid: 399a6db8d79ddec4ba9ee1bddddec8b6
+  _guid: 80f55ccca46001a43ba3928a81b84ed0
   description: 
+  sceneType: 0
   sceneReference:
-    m_AssetGUID: b3ec326bcbf8ded45bc5ca31a47c5b9a
+    m_AssetGUID: 0d0f5f8a4c1d4ef4881d32ccb5336077
     m_SubObjectName: 
     m_SubObjectType: 
     m_EditorAssetChanged: 0

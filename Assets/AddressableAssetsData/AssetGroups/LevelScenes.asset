@@ -10,20 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: ManagerScenes
+  m_Name: LevelScenes
   m_EditorClassIdentifier: 
-  m_GroupName: ManagerScenes
+  m_GroupName: LevelScenes
   m_Data:
     m_SerializedData: []
-  m_GUID: 55a19dbbda4d76943bc1848366ec32e8
+  m_GUID: 333eacd27b0208044a096667a5370e87
   m_SerializeEntries:
-  - m_GUID: 1be28c5c9dcae7648af08761c88a63be
-    m_Address: Assets/Scenes/Managers/PersistentManagers.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: e368c7b37198c3648abd5cc2982d20ba
-    m_Address: Assets/Scenes/Managers/GameplayManagers.unity
+  - m_GUID: 0d0f5f8a4c1d4ef4881d32ccb5336077
+    m_Address: Assets/Scenes/Levels/GameplayLevel.unity
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -31,5 +26,5 @@ MonoBehaviour:
   m_Settings: {fileID: 11400000, guid: 13dac9c27303a4a4b91d8b2ca7913a62, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 8aedb15edccee314cb176c14355abea1, type: 2}
-    - {fileID: 11400000, guid: 105094ce8e858974185ea88b3cb6ec1e, type: 2}
+    - {fileID: 11400000, guid: 4cf93d2fc0a3f2542ac111ff9568e54c, type: 2}
+    - {fileID: 11400000, guid: 3d0a9a8b911a5ef4cac421eea48ed938, type: 2}

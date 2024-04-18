@@ -11,11 +11,15 @@ using UnityEngine.SceneManagement;
 
 public class InitializationLoader : MonoBehaviour
 {
-	[SerializeField] private GameSceneSO _managersScene = default;
-	[SerializeField] private GameSceneSO _menuToLoad = default;
+	[SerializeField] 
+	private GameSceneSO _managersScene = default;
+	
+	[SerializeField] 
+	private GameSceneSO _menuToLoad = default;
 
 	[Header("Broadcasting on")]
-	[SerializeField] private AssetReference _menuLoadChannel = default;
+	[SerializeField] 
+	private AssetReference _menuLoadChannel = default;
 
 	private void Start()
 	{

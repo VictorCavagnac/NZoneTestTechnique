@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 146115423}
   - component: {fileID: 146115422}
   m_Layer: 5
-  m_Name: LoginButton
+  m_Name: PlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,7 +358,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 146115424}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 397722367}
+        m_TargetAssemblyTypeName: UIMainMenu, Assembly-CSharp
+        m_MethodName: StartLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &146115424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -743,6 +755,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxWave: {fileID: 1748736021}
   _maxScore: {fileID: 673506716}
+  _playButton: {fileID: 146115423}
+  _loadLevel: {fileID: 11400000, guid: d741606df79baab41b5b13ea241d1d71, type: 2}
+  _levelToLoad: {fileID: 11400000, guid: 80f55ccca46001a43ba3928a81b84ed0, type: 2}
 --- !u!1 &526338745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,7 +1445,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: START
+  m_text: LOGIN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1824,6 +1839,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5639123359481020783, guid: c92f7e29018a0734c83192206a99306b, type: 3}
+      propertyPath: _thisSceneSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 399a6db8d79ddec4ba9ee1bddddec8b6, type: 2}
     - target: {fileID: 7715258635070910333, guid: c92f7e29018a0734c83192206a99306b, type: 3}
       propertyPath: m_RootOrder
       value: 0

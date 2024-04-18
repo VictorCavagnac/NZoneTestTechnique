@@ -15,6 +15,7 @@ MonoBehaviour:
   _guid: 3ea11789c2140834ba9ea44da224cf30
   description: Scene that contains all persistent managers that the game will need
     to have. (Scene loader, input reader..)
+  sceneType: 3
   sceneReference:
     m_AssetGUID: 1be28c5c9dcae7648af08761c88a63be
     m_SubObjectName: 
