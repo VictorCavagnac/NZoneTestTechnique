@@ -37,7 +37,7 @@ public class UILogin : MonoBehaviour
 
     private async void LoginButtonPressed()
     {
-        _loginButton.enabled = false;
+        _loginButton.interactable = false;
 
         await LoginManager.Instance.InitSignIn();
     }
@@ -48,52 +48,6 @@ public class UILogin : MonoBehaviour
 
         _loginPanel.SetActive(false);
         _mainPanel.SetActive(true);
-    }
-
-    private async void SaveData()
-    {
-        /*
-        string playerName = await AuthenticationService.Instance.GetPlayerNameAsync();
-
-        Debug.Log("Player name : " + playerName);
-
-        await AuthenticationService.Instance.UpdatePlayerNameAsync("Gin");
-        */
-
-        /*
-        var playerData = new Dictionary<string, object>
-        {
-            {"username", "TEXT"},
-            {"currentLevel", 1}
-        };
-        ADD DATA
-        var result = await CloudSaveService.Instance.Data.Player.SaveAsync(playerData);
-        */
-
-        //DELETE await CloudSaveService.Instance.Data.Player.DeleteAsync("currentLevel");
-
-        //Debug.Log("<color=green>== " + $"Saved data {string.Join(',', playerData)} ==</color>");
-    }
-
-    private void LogoutButtonPressed()
-    {
-        GetData();
-    }
-
-    private async void GetData()
-    {
-        /*
-       var playerData = await CloudSaveService.Instance.Data.Player.LoadAsync(new HashSet<string>{"currentLevel"});
-
-       if ( playerData.TryGetValue("currentLevel", out var keyName) )
-       {
-            Debug.Log($"currentLevel: {keyName.Value.GetAs<int>()}");
-       }
-       else
-       {
-            Debug.Log("no");
-       }
-       */
     }
 
     private void OnDisable() 

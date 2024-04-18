@@ -27,6 +27,9 @@ public class SceneLoader : MonoBehaviour
 	[SerializeField] 
     private VoidEventChannelSO _onSceneReady = default;
 
+	[SerializeField]
+	private FadeChannelSO _fadeRequestChannel = default;
+
     private AsyncOperationHandle<SceneInstance> _loadingOpHandle;
 	private AsyncOperationHandle<SceneInstance> _gameplayManagerLoadingOpHandle;
 
@@ -40,7 +43,7 @@ public class SceneLoader : MonoBehaviour
 
     private void OnEnable()
 	{
-		//_loadLocation.OnLoadingRequested += LoadLocation;
+		_loadLevel.OnLoadingRequested += LoadLevel;
 		_loadMenu.OnLoadingRequested += LoadMenu;
 
 #if UNITY_EDITOR
@@ -51,7 +54,7 @@ public class SceneLoader : MonoBehaviour
 
 	private void OnDisable()
 	{
-		//_loadLocation.OnLoadingRequested -= LoadLocation;
+		_loadLevel.OnLoadingRequested -= LoadLevel;
 		_loadMenu.OnLoadingRequested -= LoadMenu;
 
 #if UNITY_EDITOR
@@ -63,12 +66,12 @@ public class SceneLoader : MonoBehaviour
 	/* ===== */
 
 #if UNITY_EDITOR
-	private void ColdStartup(GameSceneSO currentlyOpenedLocation, bool showLoadingScreen, bool fadeScreen)
+	private void ColdStartup(GameSceneSO currentlyOpenedLevel, bool showLoadingScreen, bool fadeScreen)
 	{
-		_currentlyLoadedScene = currentlyOpenedLocation;
+		_currentlyLoadedScene = currentlyOpenedLevel;
 
 		/*
-		if (_currentlyLoadedScene.sceneType == GameSceneSO.GameSceneType.Location)
+		if (_currentlyLoadedScene.sceneType == GameSceneSO.GameSceneType.Level)
 		{
 			//Gameplay managers is loaded synchronously
 			_gameplayManagerLoadingOpHandle = _gameplayScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
@@ -81,6 +84,34 @@ public class SceneLoader : MonoBehaviour
 	}
 #endif
 
+	private void LoadLevel(GameSceneSO levelToLoad, bool showLoadingScreen, bool fadeScreen)
+	{
+		// Prevent a double-loading
+		if (_isLoading) return;
+
+		_sceneToLoad = levelToLoad;
+		_showLoadingScreen = showLoadingScreen;
+		_isLoading = true;
+
+		// In case we are coming from the main menu, we need to load the Gameplay manager scene first
+		if ( _gameplayManagerSceneInstance.Scene == null || !_gameplayManagerSceneInstance.Scene.isLoaded )
+		{
+			_gameplayManagerLoadingOpHandle = _gameplayScene.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true);
+			_gameplayManagerLoadingOpHandle.Completed += OnGameplayManagersLoaded;
+		}
+		else
+		{
+			StartCoroutine(UnloadPreviousScene());
+		}
+	}
+
+	private void OnGameplayManagersLoaded(AsyncOperationHandle<SceneInstance> obj)
+	{
+		_gameplayManagerSceneInstance = _gameplayManagerLoadingOpHandle.Result;
+
+		StartCoroutine(UnloadPreviousScene());
+	}
+
     /* ===== */
 
     /// <summary>
@@ -88,17 +119,14 @@ public class SceneLoader : MonoBehaviour
 	/// </summary>
 	private void LoadMenu(GameSceneSO menuToLoad, bool showLoadingScreen, bool fadeScreen)
 	{
-		//Prevent a double-loading, for situations where the player falls in two Exit colliders in one frame
-		if (_isLoading)
-        {
-			return;
-        }
+		// Prevent a double-loading
+		if (_isLoading) return;
 
 		_sceneToLoad = menuToLoad;
 		_showLoadingScreen = showLoadingScreen;
 		_isLoading = true;
 
-		//In case we are coming from a Location back to the main menu, we need to get rid of the persistent Gameplay manager scene
+		//In case we are coming from a Level back to the main menu, we need to get rid of the persistent Gameplay manager scene
 		if (_gameplayManagerSceneInstance.Scene != null && _gameplayManagerSceneInstance.Scene.isLoaded)
         {
             Addressables.UnloadSceneAsync(_gameplayManagerLoadingOpHandle, true);
@@ -110,12 +138,12 @@ public class SceneLoader : MonoBehaviour
     /* ===== */
 
     /// <summary>
-	/// In both Location and Menu loading, this function takes care of removing previously loaded scenes.
+	/// In both Level and Menu loading, this function takes care of removing previously loaded scenes.
 	/// </summary>
 	private IEnumerator UnloadPreviousScene()
 	{
 		//_inputReader.DisableAllInput();
-		//_fadeRequestChannel.FadeOut(_fadeDuration);
+		_fadeRequestChannel.FadeOut(_fadeDuration);
 
 		yield return new WaitForSeconds(_fadeDuration);
 
@@ -141,13 +169,13 @@ public class SceneLoader : MonoBehaviour
 	}
 
     /// <summary>
-	/// Kicks off the asynchronous loading of a scene, either menu or Location.
+	/// Kicks off the asynchronous loading of a scene, either menu or Level.
 	/// </summary>
 	private void LoadNewScene()
 	{
 		if (_showLoadingScreen)
 		{
-			//_toggleLoadingScreen.RaiseEvent(true);
+			_toggleLoadingScreen.RaiseEvent(true);
 		}
 
 		_loadingOpHandle = _sceneToLoad.sceneReference.LoadSceneAsync(LoadSceneMode.Additive, true, 0);
@@ -163,16 +191,15 @@ public class SceneLoader : MonoBehaviour
 
 		Scene s = obj.Result.Scene;
 		SceneManager.SetActiveScene(s);
-		LightProbes.TetrahedralizeAsync();
 
 		_isLoading = false;
 
 		if (_showLoadingScreen)
         {
-			//_toggleLoadingScreen.RaiseEvent(false);
+			_toggleLoadingScreen.RaiseEvent(false);
         }
 
-		//_fadeRequestChannel.FadeIn(_fadeDuration);
+		_fadeRequestChannel.FadeIn(_fadeDuration);
 
 		_onSceneReady.RaiseEvent();
 	}
