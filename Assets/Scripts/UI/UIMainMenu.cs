@@ -44,6 +44,6 @@ public class UIMainMenu : MonoBehaviour
     {
         _playButton.interactable = false;
 
-        _loadLevel.RaiseEvent(_levelToLoad);
+        _loadLevel.RaiseEvent(_levelToLoad, true, true);
     }
 }

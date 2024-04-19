@@ -38,7 +38,7 @@ public class SceneLoader : MonoBehaviour
 	private bool _showLoadingScreen;
 
 	private SceneInstance _gameplayManagerSceneInstance = new SceneInstance();
-	private float _fadeDuration = .5f;
+	private float _fadeDuration = .3f;
 	private bool _isLoading = false; 
 
     private void OnEnable()
@@ -143,21 +143,21 @@ public class SceneLoader : MonoBehaviour
 		//_inputReader.DisableAllInput();
 		_fadeRequestChannel.FadeOut(_fadeDuration);
 
-		yield return new WaitForSeconds(_fadeDuration);
+		yield return new WaitForSeconds(_fadeDuration * 2);
 
 		if (_currentlyLoadedScene != null) //would be null if the game was started in Initialisation
 		{
 			if (_currentlyLoadedScene.sceneReference.OperationHandle.IsValid())
 			{
-				//Unload the scene through its AssetReference, i.e. through the Addressable system
+				// Unload the scene through its AssetReference, i.e. through the Addressable system
 				_currentlyLoadedScene.sceneReference.UnLoadScene();
 			}
 #if UNITY_EDITOR
 			else
 			{
-				//Only used when, after a "cold start", the player moves to a new scene
-				//Since the AsyncOperationHandle has not been used (the scene was already open in the editor),
-				//the scene needs to be unloaded using regular SceneManager instead of as an Addressable
+				// Only used when, after a "cold start", the player moves to a new scene
+				// Since the AsyncOperationHandle has not been used (the scene was already open in the editor),
+				// the scene needs to be unloaded using regular SceneManager instead of as an Addressable
 				SceneManager.UnloadSceneAsync(_currentlyLoadedScene.sceneReference.editorAsset.name);
 			}
 #endif
@@ -184,11 +184,18 @@ public class SceneLoader : MonoBehaviour
 
     private void OnNewSceneLoaded(AsyncOperationHandle<SceneInstance> obj)
 	{
-		//Save loaded scenes (to be unloaded at next load request)
+		// Save loaded scenes (to be unloaded at next load request)
 		_currentlyLoadedScene = _sceneToLoad;
 
 		Scene s = obj.Result.Scene;
 		SceneManager.SetActiveScene(s);
+
+		StartCoroutine(WaitLoading());
+	}
+
+	private IEnumerator WaitLoading()
+	{
+		yield return new WaitForSeconds(1.5f);
 
 		_isLoading = false;
 
