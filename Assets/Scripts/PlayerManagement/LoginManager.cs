@@ -51,11 +51,17 @@ public class LoginManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+	/// Called by the first button through the Login UI, launching the correct event
+	/// </summary>
     public async Task InitSignIn()
     {
         await PlayerAccountService.Instance.StartSignInAsync();
     }
 
+    /// <summary>
+	/// Launch the Unity Auth services and gets back the player infos used by the SaveManager
+	/// </summary>
     private async Task SignInWithUnityAsync(string accessToken)
     {
         try

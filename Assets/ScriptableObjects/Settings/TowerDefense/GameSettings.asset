@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f0d560db8be9b84ab26f5c68d5a5a50, type: 3}
+  m_Name: GameSettings
+  m_EditorClassIdentifier: 
+  _startingHealth: 15
+  _startingMoney: 100
+  _waveSettings: {fileID: 11400000, guid: eac1056a537501341a09c7789ecf8995, type: 2}

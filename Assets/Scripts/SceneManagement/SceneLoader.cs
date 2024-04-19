@@ -147,9 +147,9 @@ public class SceneLoader : MonoBehaviour
 		//_inputReader.DisableAllInput();
 		_fadeRequestChannel.FadeOut(_fadeDuration);
 
-		yield return new WaitForSeconds(_fadeDuration * 2);
+		yield return new WaitForSeconds(_fadeDuration);
 
-		if (_currentlyLoadedScene != null) //would be null if the game was started in Initialisation
+		if (_currentlyLoadedScene != null) // Would be null if the game was started in Initialisation
 		{
 			if (_currentlyLoadedScene.sceneReference.OperationHandle.IsValid())
 			{

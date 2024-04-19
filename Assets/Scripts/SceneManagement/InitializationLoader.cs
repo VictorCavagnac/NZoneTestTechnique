@@ -36,6 +36,6 @@ public class InitializationLoader : MonoBehaviour
 	{
 		obj.Result.RaiseEvent(_menuToLoad, true);
 
-		SceneManager.UnloadSceneAsync(0); //Initialization is the only scene in BuildSettings, thus it has index 0
+		SceneManager.UnloadSceneAsync(0); // Initialization is the only scene in BuildSettings, thus it has index 0
 	}
 }
