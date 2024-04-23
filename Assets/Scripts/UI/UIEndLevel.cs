@@ -10,6 +10,13 @@ public class UIEndLevel : MonoBehaviour
     [SerializeField]
     private ReturnToLoader _returnTo = null;
 
+    [Header("Panel Settings")]
+    [SerializeField]
+    private GameObject _winPanel = null;
+
+    [SerializeField]
+    private GameObject _gameoverPanel = null;
+
     [Header("Buttons Settings")]
     [SerializeField]
     private Button _restartButton = null;
@@ -29,7 +36,8 @@ public class UIEndLevel : MonoBehaviour
 
     public void SetEndPanel(bool state)
     {
-
+        _winPanel.SetActive(state);
+        _gameoverPanel.SetActive(!state);
     }
 
     public void RestartLevel()
