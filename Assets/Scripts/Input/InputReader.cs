@@ -1,29 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputReader : MonoBehaviour
+public class InputReader : MonoBehaviour, GameControls.IGameplayActions
 {
-    public static InputReader Instance;
+    [Header("Common Settings")]
+    [SerializeField]
+    private Camera _camera = null;
 
-    public Vector2 cameraDelta = Vector2.zero;
-    public bool cameraIsMoving = false;
+    [SerializeField]
+    private LayerMask _placementLayerMask = default;
+
+    [Header("Listening to..")]
+    [SerializeField]
+    private VoidEventChannelSO _activateGameplayInput = default;
+
+    [SerializeField]
+    private VoidEventChannelSO _disableAllInput = default;
+
+    [Header("Broadcasting to..")]
+    [SerializeField]
+    private Vector2EventChannelSO _dragEvent = default;
+
+    [SerializeField]
+    private BoolEventChannelSO _moveCameraEvent = default;
+
+    [SerializeField]
+    private Vector3EventChannelSO _cursorWorldPosEvent = default;
+
+    [SerializeField]
+    private VoidEventChannelSO _selectEvent = default;
+
+    [SerializeField]
+    private FloatEventChannelSO _zoomEvent = default;
 
     private GameControls _gameControls = null;
 
-    private void Awake()
-    {
-        if ( Instance == null )
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    private Vector3 lastPositionHit = Vector3.zero;
 
     private void OnEnable() 
     {
@@ -31,19 +43,20 @@ public class InputReader : MonoBehaviour
         {
             _gameControls = new GameControls();
 
-            _gameControls.Gameplay.Drag.performed     += i => cameraDelta = i.ReadValue<Vector2>();
-
-            _gameControls.Gameplay.MoveCamera.performed += i => cameraIsMoving = true;
-            _gameControls.Gameplay.MoveCamera.canceled  += i => cameraIsMoving = false;
+            _gameControls.Gameplay.SetCallbacks(this);
         }
+
+        _activateGameplayInput.OnEventRaised += EnableGameplayInput;
+        _disableAllInput.OnEventRaised += DisableAllInput;
     }
 
     private void OnDisable() 
     {
         DisableAllInput();
-    }
 
-    /* ===== */
+        _activateGameplayInput.OnEventRaised -= EnableGameplayInput;
+        _disableAllInput.OnEventRaised -= DisableAllInput;
+    }
 
     public void EnableGameplayInput()
     {
@@ -53,5 +66,61 @@ public class InputReader : MonoBehaviour
     public void DisableAllInput()
     {
         _gameControls.Gameplay.Disable();
+    }
+
+    /* ===== */
+
+    public void OnDrag(InputAction.CallbackContext context)
+    {
+        if ( context.phase == InputActionPhase.Performed )
+        {
+            _dragEvent.RaiseEvent(context.ReadValue<Vector2>());
+        }
+    }
+
+    public void OnMoveCamera(InputAction.CallbackContext context)
+    {
+        if ( context.phase == InputActionPhase.Performed )
+        {
+            _moveCameraEvent.RaiseEvent(true);
+        }
+        else if ( context.phase == InputActionPhase.Canceled )
+        {
+            _moveCameraEvent.RaiseEvent(false);
+        }
+    }
+
+    public void OnPosition(InputAction.CallbackContext context)
+    {
+        if ( context.phase == InputActionPhase.Performed )
+        {
+            _cursorWorldPosEvent.RaiseEvent(GetCursorWorldPosition(context.ReadValue<Vector2>()));
+        }
+    }
+
+    public Vector3 GetCursorWorldPosition(Vector2 cursorPosition)
+    {
+        Ray ray = _camera.ScreenPointToRay(cursorPosition);
+        RaycastHit hit;
+
+        if ( Physics.Raycast(ray, out hit, 100, _placementLayerMask) )
+        {
+            lastPositionHit = hit.point;
+        }
+
+        return lastPositionHit;
+    }
+
+    public void OnSelect(InputAction.CallbackContext context)
+    {
+        if ( context.phase == InputActionPhase.Canceled )
+        {
+            _selectEvent.RaiseEvent();
+        }
+    }
+
+    public void OnZoom(InputAction.CallbackContext context)
+    {
+        _zoomEvent.RaiseEvent(context.ReadValue<float>());
     }
 }

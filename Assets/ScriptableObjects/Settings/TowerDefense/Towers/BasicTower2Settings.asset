@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d17e953d84fbde4a84632a62b18de94, type: 3}
+  m_Name: BasicTower2Settings
+  m_EditorClassIdentifier: 
+  _towerName: Basic Tower 2
+  _towerType: 2
+  _cost: 150
+  _attackCooldown: 0.5
+  _attackRange: 2
+  _towerSprite: {fileID: 21300000, guid: 3f68427fba90b964cb71c902da2cc401, type: 3}
+  _towerPrefab: {fileID: 1165716222392340367, guid: 03a202b7bea137e41b8c8335b4685cfd, type: 3}

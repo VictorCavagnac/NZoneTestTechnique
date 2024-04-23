@@ -167,4 +167,168 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfaa26b40f69e4442bb6d20343b08ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _waveManager: {fileID: 945776155}
+  _gameSettings: {fileID: 11400000, guid: 61921329be1488545b2ea53c663d30ca, type: 2}
+  _loadMenu: {fileID: 11400000, guid: 8e13ae442f8ff4e438df28bde933f081, type: 2}
+  _menuToLoad: {fileID: 11400000, guid: 399a6db8d79ddec4ba9ee1bddddec8b6, type: 2}
+  _waitTimeBetweenWaves: 2
   _onSceneReady: {fileID: 11400000, guid: 004ac00232e757a4983f0842f304ba75, type: 2}
+  _onEnemyDefeated: {fileID: 11400000, guid: d41002ea5fd6e4f42acc0d70ed833494, type: 2}
+  _onEnemyAttackPlayer: {fileID: 11400000, guid: 58d369e09787b3840a203fe762f89133, type: 2}
+  _onRequestNextWave: {fileID: 11400000, guid: 7ca9736b2c603b04b96b005babb75161, type: 2}
+  _activateGameplayInputEvent: {fileID: 11400000, guid: e98aaa49c0159fd48af82d12e999c105, type: 2}
+  _updatePlayerHealthEvent: {fileID: 11400000, guid: 3e83e926b9bc41d4f87b6f45e6e4187a, type: 2}
+  _updatePlayerMoneyEvent: {fileID: 11400000, guid: 94ea2e177ee43084ba6b6f1d4de61990, type: 2}
+  _updatePlayerWaveEvent: {fileID: 11400000, guid: a8bbcd3fc404dc147be83d7d89533f6b, type: 2}
+  _sfxEvent: {fileID: 11400000, guid: 177cfb13eacd48e4bb28612d2860f82b, type: 2}
+  _musicEvent: {fileID: 11400000, guid: db8098cc6f4919d42a2d78b3f80bfa0f, type: 2}
+  _sfxConfig: {fileID: 11400000, guid: de2bd437d6d6ef14785a483a7edfc010, type: 2}
+  _musicConfig: {fileID: 11400000, guid: e3b8f7e014a120844bcb61aa749fe1e6, type: 2}
+  _musicToPlay: {fileID: 11400000, guid: 7ceb97c207a9beb4bb08d4c93dd1960f, type: 2}
+  _enemyDefeatSFX: {fileID: 11400000, guid: ead87fc83791558429c2378b25a98b63, type: 2}
+  currentMoney: 0
+--- !u!1 &762404091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 762404093}
+  - component: {fileID: 762404092}
+  m_Layer: 0
+  m_Name: '[BuildingManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &762404092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762404091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6130eef781979b14bbf96a02260bdb88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _grid: {fileID: 1334358233}
+  _gameSettings: {fileID: 11400000, guid: 61921329be1488545b2ea53c663d30ca, type: 2}
+  _onTowerRequested: {fileID: 11400000, guid: fa1acffe9058ada4e99d3cedebb53719, type: 2}
+  _onCursorWorldPos: {fileID: 11400000, guid: 2cfd32e94f7e5254bb92da480c40a3a0, type: 2}
+  _onSelect: {fileID: 11400000, guid: e1b5f695c3c40ea4ca0e479b7f23b148, type: 2}
+  _towerPlacedEvent: {fileID: 11400000, guid: e20c5ea46debe6b48a2308cfd9f1bcdf, type: 2}
+--- !u!4 &762404093
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762404091}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1334358234}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &945776154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945776156}
+  - component: {fileID: 945776155}
+  m_Layer: 0
+  m_Name: '[WaveManager]'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &945776155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945776154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 397c345771f52b14cbf06febab7c0b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _allEnemiesAvailable:
+  - {fileID: 11400000, guid: 589f9f26c22c0ad41af6e882fcef1f4f, type: 2}
+  - {fileID: 11400000, guid: 67c17a788e44cb647b042579ea4b8d6f, type: 2}
+  _waitTimeWave: 2
+  _onReturnEnemy: {fileID: 11400000, guid: 044fba2e780c4534fa97bd5e4b1ea07c, type: 2}
+  _requestNextWaveEvent: {fileID: 11400000, guid: 7ca9736b2c603b04b96b005babb75161, type: 2}
+--- !u!4 &945776156
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945776154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1334358232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1334358234}
+  - component: {fileID: 1334358233}
+  m_Layer: 0
+  m_Name: Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!156049354 &1334358233
+Grid:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334358232}
+  m_Enabled: 1
+  m_CellSize: {x: 1, y: 1, z: 1}
+  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellLayout: 0
+  m_CellSwizzle: 1
+--- !u!4 &1334358234
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334358232}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 762404093}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

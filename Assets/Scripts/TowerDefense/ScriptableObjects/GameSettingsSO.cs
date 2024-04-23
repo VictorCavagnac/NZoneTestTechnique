@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "GameSettings", menuName = "TowerDefense/Game Settings")]
 public class GameSettingsSO : ScriptableObject
@@ -10,12 +12,16 @@ public class GameSettingsSO : ScriptableObject
     [SerializeField]
     private int _startingMoney = 100;
 
+    [SerializeField]
+    private List<TowerSettingsSO> _towersAvailable = null;
+
     [Header("Wave Settings")]
     [SerializeField]
-    private WaveSettingsSO _waveSettings = null;
+    private List<WaveSettingsSO> _listOfWaves = null;
 
     public int StartingHealth => _startingHealth;
-    public int StartingMoney  => _startingMoney;
+    public int StartingMoney => _startingMoney;
+    public List<TowerSettingsSO> TowersAvailable => _towersAvailable;
 
-    public WaveSettingsSO WaveSettings => _waveSettings;
+    public List<WaveSettingsSO> ListOfWaves => _listOfWaves;
 }

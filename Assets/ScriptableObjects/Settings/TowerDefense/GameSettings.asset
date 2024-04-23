@@ -14,4 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _startingHealth: 15
   _startingMoney: 100
-  _waveSettings: {fileID: 11400000, guid: eac1056a537501341a09c7789ecf8995, type: 2}
+  _towersAvailable:
+  - {fileID: 11400000, guid: db3791281910f974583fef022d4d4309, type: 2}
+  - {fileID: 11400000, guid: 365ca6bfcaf1fd54ebdb47f3b60a5ce1, type: 2}
+  _listOfWaves:
+  - {fileID: 11400000, guid: eac1056a537501341a09c7789ecf8995, type: 2}
+  - {fileID: 11400000, guid: ca3899efbd29a4c47924977d5600e344, type: 2}

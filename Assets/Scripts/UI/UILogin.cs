@@ -33,6 +33,11 @@ public class UILogin : MonoBehaviour
         _loginButton.onClick.AddListener(LoginButtonPressed);
 
         _onSignedIn.OnEventRaised += OnSignedIn;
+
+        if ( LoginManager.Instance.isSignedIn )
+        {
+            OnSignedIn(LoginManager.Instance.playerUsername);
+        }
     }
 
     private async void LoginButtonPressed()

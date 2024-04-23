@@ -410,6 +410,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraSpeed: 15
+  _zoomRate: 40
+  _zoomDampening: 5
+  _maxDistanceZoom: 10
+  _minDistanceZoom: 4
+  _dragEvent: {fileID: 11400000, guid: 35d406bcfa9c4a849b4e569aa587422a, type: 2}
+  _zoomEvent: {fileID: 11400000, guid: 140c4791bc8cc3d4b937bd3ee80d1c35, type: 2}
+  _moveCameraEvent: {fileID: 11400000, guid: 2eb1a9619a5a0524fb2c9ef1aef83344, type: 2}
 --- !u!1 &501940889
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,8 +537,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10305c1a6862fbe4fa3980affd1463e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraDelta: {x: 0, y: 0}
-  cameraIsMoving: 0
+  _camera: {fileID: 346833180}
+  _placementLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  _activateGameplayInput: {fileID: 11400000, guid: e98aaa49c0159fd48af82d12e999c105, type: 2}
+  _disableAllInput: {fileID: 11400000, guid: 8d31b3aecf354874dbdf827a4162a6e2, type: 2}
+  _dragEvent: {fileID: 11400000, guid: 35d406bcfa9c4a849b4e569aa587422a, type: 2}
+  _moveCameraEvent: {fileID: 11400000, guid: 2eb1a9619a5a0524fb2c9ef1aef83344, type: 2}
+  _cursorWorldPosEvent: {fileID: 11400000, guid: 2cfd32e94f7e5254bb92da480c40a3a0, type: 2}
+  _selectEvent: {fileID: 11400000, guid: e1b5f695c3c40ea4ca0e479b7f23b148, type: 2}
+  _zoomEvent: {fileID: 11400000, guid: 140c4791bc8cc3d4b937bd3ee80d1c35, type: 2}
 --- !u!1 &1044571095
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onSignedIn: {fileID: 11400000, guid: 9996ffcfc3834da4c8b5c18b065a6972, type: 2}
   playerUsername: 
+  isSignedIn: 0
 --- !u!4 &1704669523
 Transform:
   m_ObjectHideFlags: 0
@@ -926,6 +943,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2010004866}
+  - component: {fileID: 2010004867}
   m_Layer: 0
   m_Name: '[AudioManager]'
   m_TagString: Untagged
@@ -948,6 +966,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2010004867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010004865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf3635f3f9705142b3f1eb7b3e867cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pool: {fileID: 11400000, guid: 3f12edac7e214a3448c3f35a507ea8a7, type: 2}
+  _initialSize: 10
+  _musicEventChannel: {fileID: 11400000, guid: db8098cc6f4919d42a2d78b3f80bfa0f, type: 2}
+  _SFXEventChannel: {fileID: 11400000, guid: 177cfb13eacd48e4bb28612d2860f82b, type: 2}
+  _masterVolumeEventChannel: {fileID: 11400000, guid: 40bb369ea508ed948833f1fdb91f1b83, type: 2}
+  _musicVolumeEventChannel: {fileID: 11400000, guid: ff07a37c530f9bd4396aa9a4391bb911, type: 2}
+  _SFXVolumeEventChannel: {fileID: 11400000, guid: b7e2716f0eb29d14f9d2c1fb05dbb9bc, type: 2}
+  _audioMixer: {fileID: 24100000, guid: 11d67ed92149a5548a1188adca8a1142, type: 2}
+  _masterVolume: 0.85
+  _musicVolume: 1
+  _sfxVolume: 1
 --- !u!1 &2091863851
 GameObject:
   m_ObjectHideFlags: 0

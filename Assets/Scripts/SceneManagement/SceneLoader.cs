@@ -193,13 +193,14 @@ public class SceneLoader : MonoBehaviour
 
 		Scene s = obj.Result.Scene;
 		SceneManager.SetActiveScene(s);
+		LightProbes.TetrahedralizeAsync();
 
 		StartCoroutine(WaitLoading());
 	}
 
 	private IEnumerator WaitLoading()
 	{
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(1f);
 
 		_isLoading = false;
 

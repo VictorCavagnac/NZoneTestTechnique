@@ -7,6 +7,10 @@ using Unity.Services.Authentication.PlayerAccounts;
 using Unity.Services.Core;
 using UnityEngine;
 
+
+/// <summary>
+/// This class manages the first login of the player
+/// </summary>
 public class LoginManager : MonoBehaviour
 {
     public static LoginManager Instance;
@@ -19,6 +23,8 @@ public class LoginManager : MonoBehaviour
 
     [HideInInspector]
     public string playerUsername = "";
+
+    public bool isSignedIn = false;
 
     private async void Awake() 
     {
@@ -44,6 +50,8 @@ public class LoginManager : MonoBehaviour
         {
             var accessToken = PlayerAccountService.Instance.AccessToken;
             await SignInWithUnityAsync(accessToken);
+
+            isSignedIn = true;
         }
         catch (Exception ex)
         {
