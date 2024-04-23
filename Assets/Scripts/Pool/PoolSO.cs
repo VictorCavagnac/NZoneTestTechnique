@@ -82,6 +82,12 @@ public abstract class PoolSO<T> : ScriptableObject, IPool<T>
         }
     }
 
+    public void KillPool()
+    {
+        Available.Clear();
+        HasBeenPrewarmed = false;
+    }
+
     public virtual void OnDisable()
     {
         Available.Clear();

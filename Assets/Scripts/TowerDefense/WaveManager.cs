@@ -50,6 +50,7 @@ public class WaveManager : MonoBehaviour
         _onRestartLevel.OnEventRaised -= OnRestartLevel;
 
         StopAllCoroutines();
+        KillAllPools();
     }
 
     private void InitiateAllPools()
@@ -63,6 +64,16 @@ public class WaveManager : MonoBehaviour
             _listOfEnemies.Add(enemySettings.EnemyType, enemySettings);
 
             enemySettings.EnemyPool.Prewarm(enemySettings.PrewarmNumber);
+        }
+    }
+
+    private void KillAllPools()
+    {
+        for ( int i = 0; i < _allEnemiesAvailable.Count; i++ )
+        {
+            EnemySettingsSO enemySettings = _allEnemiesAvailable[i];
+
+            enemySettings.EnemyPool.KillPool();
         }
     }
 
@@ -98,6 +109,8 @@ public class WaveManager : MonoBehaviour
         {
             EnemySettingsSO enemySettings = _listOfEnemies[groupOfEnemies.EnemyType];
             EnemyPoolSO enemyPool = enemySettings.EnemyPool;
+
+            
 
             Enemy enemy = enemyPool.Request();
             enemy.transform.position = _spawnPoint.position;
