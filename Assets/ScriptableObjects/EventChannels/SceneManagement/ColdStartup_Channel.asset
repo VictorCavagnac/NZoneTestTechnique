@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e486fb64f9f76a468c10305c9a4aecc, type: 3}
   m_Name: ColdStartup_Channel
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: efa8fd99078a5294eadf67d4b44fd950
+  description: Raised by EditorInitializer to notify the SceneLoader that the user
+    launch a scene in the editor.

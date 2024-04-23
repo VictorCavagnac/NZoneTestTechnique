@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e46196b3e6daf4aa56698c6d89fbed, type: 3}
   m_Name: OnTowerRequested
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: fa1acffe9058ada4e99d3cedebb53719
+  description: Raised by the UITowerDefense when selecting a tower, only shows a
+    preview of the tower.

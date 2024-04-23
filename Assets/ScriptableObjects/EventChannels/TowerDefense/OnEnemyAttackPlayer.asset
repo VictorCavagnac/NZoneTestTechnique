@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a758f5749ea9a4c846ddb109f5aa3f, type: 3}
   m_Name: OnEnemyAttackPlayer
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: 58d369e09787b3840a203fe762f89133
+  description: Raised when an enemy reached the end of the path.

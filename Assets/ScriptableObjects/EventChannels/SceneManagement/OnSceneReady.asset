@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a758f5749ea9a4c846ddb109f5aa3f, type: 3}
   m_Name: OnSceneReady
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: 004ac00232e757a4983f0842f304ba75
+  description: Raised by the SceneLoader when a scene is ready to operate and active.

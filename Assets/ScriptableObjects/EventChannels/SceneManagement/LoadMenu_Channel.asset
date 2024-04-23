@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e486fb64f9f76a468c10305c9a4aecc, type: 3}
   m_Name: LoadMenu_Channel
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: 8e13ae442f8ff4e438df28bde933f081
+  description: Request the loading of a menu scene.

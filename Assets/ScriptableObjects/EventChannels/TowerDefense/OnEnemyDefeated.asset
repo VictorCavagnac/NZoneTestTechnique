@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e46196b3e6daf4aa56698c6d89fbed, type: 3}
   m_Name: OnEnemyDefeated
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: d41002ea5fd6e4f42acc0d70ed833494
+  description: Raised when an enemy is defeated by the player

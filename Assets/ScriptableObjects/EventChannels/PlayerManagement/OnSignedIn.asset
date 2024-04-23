@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f526cb4ab5b43045ad10a5a32de53c2, type: 3}
   m_Name: OnSignedIn
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: 9996ffcfc3834da4c8b5c18b065a6972
+  description: Raised by LoginManager when the player successfully loged in.

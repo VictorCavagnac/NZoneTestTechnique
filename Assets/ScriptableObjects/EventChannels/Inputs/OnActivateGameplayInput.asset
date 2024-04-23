@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a758f5749ea9a4c846ddb109f5aa3f, type: 3}
   m_Name: OnActivateGameplayInput
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: e98aaa49c0159fd48af82d12e999c105
+  description: Activate the Gameplay Inputs

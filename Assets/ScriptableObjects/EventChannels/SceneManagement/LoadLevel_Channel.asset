@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e486fb64f9f76a468c10305c9a4aecc, type: 3}
   m_Name: LoadLevel_Channel
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: d741606df79baab41b5b13ea241d1d71
+  description: Request the loading of a level scene.

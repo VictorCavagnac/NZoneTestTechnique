@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a758f5749ea9a4c846ddb109f5aa3f, type: 3}
   m_Name: OnTowerPlaced
   m_EditorClassIdentifier: 
-  _guid: 
-  description: 
+  _guid: e20c5ea46debe6b48a2308cfd9f1bcdf
+  description: Raised when a tower is bought by the player.

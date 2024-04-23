@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77a758f5749ea9a4c846ddb109f5aa3f, type: 3}
   m_Name: OnDisableAllInputs
   m_EditorClassIdentifier: 
-  _guid: 
+  _guid: 8d31b3aecf354874dbdf827a4162a6e2
   description: 
