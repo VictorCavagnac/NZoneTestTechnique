@@ -21,16 +21,23 @@ public class TowerSettingsSO : ScriptableObject
     private float _attackRange = 4f;
 
     [SerializeField]
+    private int _attackDmg = 5;
+
+    [SerializeField]
     private Sprite _towerSprite = null;
 
     [SerializeField]
     private GameObject _towerPrefab = null;
 
     public string TowerName => _towerName;
+
     public TowerTargetType TowerType => _towerType;
+
     public int Cost => _cost;
     public float AttackCooldown => _attackCooldown;
     public float AttackRange => _attackRange;
+    public int AttackDmg => _attackDmg;
+
     public Sprite TowerSprite => _towerSprite;
     public GameObject TowerPrefab => _towerPrefab;
 }

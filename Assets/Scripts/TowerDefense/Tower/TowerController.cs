@@ -73,6 +73,7 @@ public class TowerController : MonoBehaviour
     private void OnTowerPlaced()
     {
         _towerState = TowerState.Idle;
+        _towerRangeVisual.SetActive(false);
 
         // Don't listen to the event since it's used for one tower at a time
         _onTowerPlaced.OnEventRaised -= OnTowerPlaced;
@@ -111,7 +112,7 @@ public class TowerController : MonoBehaviour
         BasicProjectile projectile = (BasicProjectile)_basicProjectilePool.Request();
 
         projectile.transform.position = transform.position;
-        projectile.Initiate(enemy, this);
+        projectile.Initiate(enemy, this, _towerSettings.AttackDmg);
     }
 
     public void ProjectileHit(Projectile projectile)
@@ -182,6 +183,10 @@ public class TowerController : MonoBehaviour
         return closestEnemy;
     }
 
+    /// <summary>
+    /// Checking the path progression of two enemies
+    /// </summary>
+    /// <returns>Furthest Enemy</returns>
     private Enemy CompareGreaterPathProgress(Enemy enemy1, Enemy enemy2)
     {
         if ( enemy1.currentWaypointIndex > enemy2.currentWaypointIndex )
@@ -207,6 +212,10 @@ public class TowerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checking the path progression of two enemies
+    /// </summary>
+    /// <returns>Nearest Enemy</returns>
     private Enemy CompareLeastPathProgress(Enemy enemy1, Enemy enemy2)
     {
         if ( enemy1.currentWaypointIndex < enemy2.currentWaypointIndex )

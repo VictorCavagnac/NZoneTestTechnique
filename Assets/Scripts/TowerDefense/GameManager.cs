@@ -15,12 +15,6 @@ public class GameManager : MonoBehaviour
     private GameSettingsSO _gameSettings = null;
 
     [SerializeField]
-    private LoadEventChannelSO _loadMenu = default;
-
-    [SerializeField] 
-	private GameSceneSO _menuToLoad = default;
-
-    [SerializeField]
     private float _waitTimeBetweenWaves = 2f;
 
     [Header("Listening to..")]
@@ -41,6 +35,9 @@ public class GameManager : MonoBehaviour
     private VoidEventChannelSO _activateGameplayInputEvent = default;
 
     [SerializeField]
+    private VoidEventChannelSO _disableAllInputsEvent = default;
+
+    [SerializeField]
     private IntEventChannelSO _updatePlayerHealthEvent = default;
 
     [SerializeField]
@@ -48,6 +45,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private IntEventChannelSO _updatePlayerWaveEvent = default;
+
+    [SerializeField]
+    private BoolEventChannelSO _endEvent = default;
 
     [SerializeField]
     private AudioCueEventChannelSO _sfxEvent = default;
@@ -153,7 +153,8 @@ public class GameManager : MonoBehaviour
         {
             SaveManager.Instance.SavePlayerStats(_currentWaveIndex, 999);
 
-            _loadMenu.RaiseEvent(_menuToLoad, true, true);
+            _endEvent.RaiseEvent(true);
+            _disableAllInputsEvent.RaiseEvent();
         }
     }
 

@@ -9,16 +9,20 @@ public class BasicProjectile : Projectile
 
     private bool _isUsed = false;
 
+    private int _attackDmg = 0;
+
     private void OnEnable() 
     {
         _target = null;
         _isUsed = false;
     }
 
-    public void Initiate(Enemy enemyToFollow, TowerController currentTower)
+    public void Initiate(Enemy enemyToFollow, TowerController currentTower, int attackDmg)
     {
         _target = enemyToFollow;
         _currentTower = currentTower;
+        _attackDmg = attackDmg;
+
         _isUsed = true;
     }
 
@@ -50,7 +54,7 @@ public class BasicProjectile : Projectile
     {
         if ( _target != null )
         {
-            _target.HitEnemy(this);
+            _target.HitEnemy(this, _attackDmg);
         }
 
         _target = null;

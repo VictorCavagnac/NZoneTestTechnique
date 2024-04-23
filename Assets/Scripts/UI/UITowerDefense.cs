@@ -57,6 +57,19 @@ public class UITowerDefense : MonoBehaviour
 
     [SerializeField]
     private UITowerButton _towerButtonPrefab = null;
+    
+    [Header("EndLevel UI Settings")]
+    [SerializeField]
+    private UIEndLevel _endLevelUI = null;
+
+    [SerializeField]
+    private GameObject _endPanel = null;
+    
+    [SerializeField]
+    private CanvasGroup _endPanelCG = null;
+
+    [SerializeField]
+    private float _endPanelFadeDuration = 2f;
 
     [Header("Common Settings")]
     [SerializeField]
@@ -75,6 +88,9 @@ public class UITowerDefense : MonoBehaviour
     [SerializeField]
     private IntEventChannelSO _onUpdatePlayerWave = default;
 
+    [SerializeField]
+    private BoolEventChannelSO _onEndLevel = default;
+
     [Header("Broadcasting to..")]
     [SerializeField]
     private IntEventChannelSO _onTowerRequested = default;
@@ -89,6 +105,8 @@ public class UITowerDefense : MonoBehaviour
         _onUpdatePlayerHealth.OnEventRaised += SetPlayerLife;
         _onUpdatePlayerMoney.OnEventRaised += SetPlayerMoney;
         _onUpdatePlayerWave.OnEventRaised += SetPlayerWave;
+
+        _onEndLevel.OnEventRaised += OnEndLevel;
     }
 
     private void OnDisable()
@@ -98,11 +116,21 @@ public class UITowerDefense : MonoBehaviour
         _onUpdatePlayerHealth.OnEventRaised -= SetPlayerLife;
         _onUpdatePlayerMoney.OnEventRaised -= SetPlayerMoney;
         _onUpdatePlayerWave.OnEventRaised -= SetPlayerWave;
+
+        _onEndLevel.OnEventRaised -= OnEndLevel;
     }
 
     private void Awake() 
     {
         InitiateBuildingButtons();
+
+        ResetUI();
+    }
+
+    private void ResetUI()
+    {
+        _endPanel.SetActive(false);
+        _endPanelCG.alpha = 0;
 
         SetPlayerLife(_gameSettings.StartingHealth);
         SetPlayerMoney(_gameSettings.StartingMoney);
@@ -200,5 +228,17 @@ public class UITowerDefense : MonoBehaviour
     {
         _currentTowerSelected = -1;
         _isTowerSelected = false;
+    }
+
+    /* ===== */
+
+    private void OnEndLevel(bool state)
+    {
+        _endLevelUI.SetEndPanel(state);
+
+        _endPanelCG.alpha = 0;
+        _endPanel.SetActive(true);
+
+        _endPanelCG.DOFade(1, _endPanelFadeDuration);
     }
 }

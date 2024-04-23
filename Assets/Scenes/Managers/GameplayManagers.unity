@@ -169,17 +169,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waveManager: {fileID: 945776155}
   _gameSettings: {fileID: 11400000, guid: 61921329be1488545b2ea53c663d30ca, type: 2}
-  _loadMenu: {fileID: 11400000, guid: 8e13ae442f8ff4e438df28bde933f081, type: 2}
-  _menuToLoad: {fileID: 11400000, guid: 399a6db8d79ddec4ba9ee1bddddec8b6, type: 2}
   _waitTimeBetweenWaves: 2
   _onSceneReady: {fileID: 11400000, guid: 004ac00232e757a4983f0842f304ba75, type: 2}
   _onEnemyDefeated: {fileID: 11400000, guid: d41002ea5fd6e4f42acc0d70ed833494, type: 2}
   _onEnemyAttackPlayer: {fileID: 11400000, guid: 58d369e09787b3840a203fe762f89133, type: 2}
   _onRequestNextWave: {fileID: 11400000, guid: 7ca9736b2c603b04b96b005babb75161, type: 2}
   _activateGameplayInputEvent: {fileID: 11400000, guid: e98aaa49c0159fd48af82d12e999c105, type: 2}
+  _disableAllInputsEvent: {fileID: 11400000, guid: 8d31b3aecf354874dbdf827a4162a6e2, type: 2}
   _updatePlayerHealthEvent: {fileID: 11400000, guid: 3e83e926b9bc41d4f87b6f45e6e4187a, type: 2}
   _updatePlayerMoneyEvent: {fileID: 11400000, guid: 94ea2e177ee43084ba6b6f1d4de61990, type: 2}
   _updatePlayerWaveEvent: {fileID: 11400000, guid: a8bbcd3fc404dc147be83d7d89533f6b, type: 2}
+  _endEvent: {fileID: 11400000, guid: 35aa2296da5068b49949df81548fb5d1, type: 2}
   _sfxEvent: {fileID: 11400000, guid: 177cfb13eacd48e4bb28612d2860f82b, type: 2}
   _musicEvent: {fileID: 11400000, guid: db8098cc6f4919d42a2d78b3f80bfa0f, type: 2}
   _sfxConfig: {fileID: 11400000, guid: de2bd437d6d6ef14785a483a7edfc010, type: 2}

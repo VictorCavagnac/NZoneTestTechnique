@@ -16,6 +16,6 @@ MonoBehaviour:
   _enemyName: Enemy 1
   _movementSpeed: 1.5
   _startingHealth: 10
-  _moneyWhenDefeated: 10
+  _moneyWhenDefeated: 15
   _enemyPool: {fileID: 11400000, guid: 3c134baae09cbc64aad355d487a5a6a2, type: 2}
   _prewarmNumber: 20

@@ -90,9 +90,9 @@ public class Enemy : MonoBehaviour
 
     /* ===== */
 
-    public void HitEnemy(Projectile projectile)
+    public void HitEnemy(Projectile projectile, int attackDmg)
     {
-        _health -= 5;
+        _health -= attackDmg;
 
         if ( !_isDefeated && _health <= 0 )
         {
