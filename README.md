@@ -1,6 +1,6 @@
 # NZoneTestTechnique
 
-A simple tower defense made in approximately 17-20h~.
+A simple tower defense made in approximately 20-23h~.
 
 ## Overview
 
