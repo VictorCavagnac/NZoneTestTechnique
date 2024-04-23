@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float _waitTimeBetweenWaves = 2f;
 
+    [SerializeField]
+    private float _fadeDuration = 0.3f;
+
     [Header("Listening to..")]
     [SerializeField] 
     private VoidEventChannelSO _onSceneReady = default;
@@ -29,6 +32,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private VoidEventChannelSO _onRequestNextWave = default;
+
+    [SerializeField]
+    private VoidEventChannelSO _onRequestRestartLevel = default;
 
     [Header("Broadcasting to..")]
     [SerializeField]
@@ -48,6 +54,15 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private BoolEventChannelSO _endEvent = default;
+
+    [SerializeField]
+    private VoidEventChannelSO _resetLevelEvent = default;
+
+    [SerializeField] 
+    private BoolEventChannelSO _toggleLoadingScreen = default;
+
+	[SerializeField]
+	private FadeChannelSO _fadeRequestChannel = default;
 
     [SerializeField]
     private AudioCueEventChannelSO _sfxEvent = default;
@@ -97,6 +112,8 @@ public class GameManager : MonoBehaviour
 
         _onRequestNextWave.OnEventRaised += OnRequestNextWave;
 
+        _onRequestRestartLevel.OnEventRaised += OnRequestRestartLevel;
+
         _musicEvent.RaisePlayEvent(_musicToPlay, _musicConfig);
     }
 
@@ -109,6 +126,8 @@ public class GameManager : MonoBehaviour
 
         _onRequestNextWave.OnEventRaised -= OnRequestNextWave;
 
+        _onRequestRestartLevel.OnEventRaised -= OnRequestRestartLevel;
+
         StopAllCoroutines();
     }
 
@@ -119,16 +138,16 @@ public class GameManager : MonoBehaviour
         _enemySpawnPoint = enemySpawnPoint;
         _listOfWaypoints = listOfWaypoints;
 
-        _currentWaveIndex = 0;
-        _currentHealth = _gameSettings.StartingHealth;
-        currentMoney = _gameSettings.StartingMoney;
-
         _waveManager.SetSpawnPoint(_enemySpawnPoint, _listOfWaypoints);
     }
 
     private void StartGame()
     {
         _activateGameplayInputEvent.RaiseEvent();
+
+        _currentWaveIndex = 0;
+        _currentHealth = _gameSettings.StartingHealth;
+        currentMoney = _gameSettings.StartingMoney;
 
         StartCoroutine(WaitTimeBetweenWaves());
     }
@@ -165,6 +184,31 @@ public class GameManager : MonoBehaviour
         BeginNextWave();
     }
 
+    private void OnRequestRestartLevel()
+    {
+        StartCoroutine(ResetLevel());
+    }
+
+    private IEnumerator ResetLevel()
+    {
+        _fadeRequestChannel.FadeOut(_fadeDuration);
+
+        yield return new WaitForSeconds(_fadeDuration);
+
+        _toggleLoadingScreen.RaiseEvent(true);
+
+        _resetLevelEvent.RaiseEvent();
+
+        yield return new WaitForSeconds(2);
+
+        _toggleLoadingScreen.RaiseEvent(false);
+        _fadeRequestChannel.FadeIn(_fadeDuration);
+
+        StartGame();
+    }
+
+    /* ===== */
+
     public void BoughtTower(int cost)
     {
         currentMoney -= cost;
@@ -190,7 +234,10 @@ public class GameManager : MonoBehaviour
 
         if ( _currentHealth <= 0 )
         {
-            // GameOver
+            SaveManager.Instance.SavePlayerStats(_currentWaveIndex, 0);
+
+            _endEvent.RaiseEvent(false);
+            _disableAllInputsEvent.RaiseEvent();
         }
     }
 }

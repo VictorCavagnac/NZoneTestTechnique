@@ -23,6 +23,9 @@ public class BuildingManager : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _onSelect = default;
 
+    [SerializeField]
+    private VoidEventChannelSO _onRestartLevel = default;
+
     [Header("Broadcasting to..")]
     [SerializeField]
     private VoidEventChannelSO _towerPlacedEvent = default;
@@ -48,6 +51,8 @@ public class BuildingManager : MonoBehaviour
         _onTowerRequested.OnEventRaised += SetTowerPreview;
         _onCursorWorldPos.OnEventRaised += SetCursorWorldPosition;
 
+        _onRestartLevel.OnEventRaised += OnRestartLevel;
+
         _towerGridData = new GridData();
     }
 
@@ -55,6 +60,9 @@ public class BuildingManager : MonoBehaviour
     {
         _onTowerRequested.OnEventRaised -= SetTowerPreview;
         _onCursorWorldPos.OnEventRaised -= SetCursorWorldPosition;
+        
+        _onRestartLevel.OnEventRaised -= OnRestartLevel;
+
         _onSelect.OnEventRaised -= TryToBuyTower;
     }
 
@@ -66,18 +74,26 @@ public class BuildingManager : MonoBehaviour
         }
     }
 
+    private void OnRestartLevel()
+    {
+        ResetTowerPlacement();
+        _isPlacingTower = false;
+
+        // Delete all placed towers
+        foreach ( PlacementData towerData in _towerGridData.placedTowers.Values )
+        {
+            Destroy(towerData.tower);
+        }
+
+        _towerGridData = new GridData();
+    }
+
     /* ===== */
 
     private void SetTowerPreview(int towerIndex)
     {
         // Destroy the previous preview if needed
-        if ( _towerInPlacement != null )
-        {
-            Destroy(_towerInPlacement);
-            
-            _towerInPlacementSettings = null;
-            _towerInPlacement = null;
-        }
+        ResetTowerPlacement();
 
         // Tower selection is reset
         if ( towerIndex == -1 )
@@ -96,6 +112,17 @@ public class BuildingManager : MonoBehaviour
 
             _towerInPlacement = Instantiate(_towerInPlacementSettings.TowerPrefab);
             _isPlacingTower = true;
+        }
+    }
+
+    private void ResetTowerPlacement()
+    {
+        if ( _towerInPlacement != null )
+        {
+            Destroy(_towerInPlacement);
+            
+            _towerInPlacementSettings = null;
+            _towerInPlacement = null;
         }
     }
 
@@ -132,7 +159,7 @@ public class BuildingManager : MonoBehaviour
             
                 _towerPlacedEvent.RaiseEvent();
 
-                _towerGridData.AddTower(_gridPosition);
+                _towerGridData.AddTower(_gridPosition, _towerInPlacement);
 
                 _towerInPlacement = null;
                 _isPlacingTower = false;

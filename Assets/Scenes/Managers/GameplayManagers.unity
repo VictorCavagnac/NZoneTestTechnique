@@ -170,16 +170,21 @@ MonoBehaviour:
   _waveManager: {fileID: 945776155}
   _gameSettings: {fileID: 11400000, guid: 61921329be1488545b2ea53c663d30ca, type: 2}
   _waitTimeBetweenWaves: 2
+  _fadeDuration: 0.3
   _onSceneReady: {fileID: 11400000, guid: 004ac00232e757a4983f0842f304ba75, type: 2}
   _onEnemyDefeated: {fileID: 11400000, guid: d41002ea5fd6e4f42acc0d70ed833494, type: 2}
   _onEnemyAttackPlayer: {fileID: 11400000, guid: 58d369e09787b3840a203fe762f89133, type: 2}
   _onRequestNextWave: {fileID: 11400000, guid: 7ca9736b2c603b04b96b005babb75161, type: 2}
+  _onRequestRestartLevel: {fileID: 11400000, guid: bf1c30901d9651e448b466a5c716f6db, type: 2}
   _activateGameplayInputEvent: {fileID: 11400000, guid: e98aaa49c0159fd48af82d12e999c105, type: 2}
   _disableAllInputsEvent: {fileID: 11400000, guid: 8d31b3aecf354874dbdf827a4162a6e2, type: 2}
   _updatePlayerHealthEvent: {fileID: 11400000, guid: 3e83e926b9bc41d4f87b6f45e6e4187a, type: 2}
   _updatePlayerMoneyEvent: {fileID: 11400000, guid: 94ea2e177ee43084ba6b6f1d4de61990, type: 2}
   _updatePlayerWaveEvent: {fileID: 11400000, guid: a8bbcd3fc404dc147be83d7d89533f6b, type: 2}
   _endEvent: {fileID: 11400000, guid: 35aa2296da5068b49949df81548fb5d1, type: 2}
+  _resetLevelEvent: {fileID: 11400000, guid: f9291feddb089f642a3b69569dcb04ab, type: 2}
+  _toggleLoadingScreen: {fileID: 11400000, guid: 444faa821aff02d44be31f00d60edef4, type: 2}
+  _fadeRequestChannel: {fileID: 11400000, guid: ae544b95129e03248af129c7d0c31656, type: 2}
   _sfxEvent: {fileID: 11400000, guid: 177cfb13eacd48e4bb28612d2860f82b, type: 2}
   _musicEvent: {fileID: 11400000, guid: db8098cc6f4919d42a2d78b3f80bfa0f, type: 2}
   _sfxConfig: {fileID: 11400000, guid: de2bd437d6d6ef14785a483a7edfc010, type: 2}
@@ -221,6 +226,7 @@ MonoBehaviour:
   _onTowerRequested: {fileID: 11400000, guid: fa1acffe9058ada4e99d3cedebb53719, type: 2}
   _onCursorWorldPos: {fileID: 11400000, guid: 2cfd32e94f7e5254bb92da480c40a3a0, type: 2}
   _onSelect: {fileID: 11400000, guid: e1b5f695c3c40ea4ca0e479b7f23b148, type: 2}
+  _onRestartLevel: {fileID: 11400000, guid: f9291feddb089f642a3b69569dcb04ab, type: 2}
   _towerPlacedEvent: {fileID: 11400000, guid: e20c5ea46debe6b48a2308cfd9f1bcdf, type: 2}
 --- !u!4 &762404093
 Transform:
@@ -272,6 +278,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 67c17a788e44cb647b042579ea4b8d6f, type: 2}
   _waitTimeWave: 2
   _onReturnEnemy: {fileID: 11400000, guid: 044fba2e780c4534fa97bd5e4b1ea07c, type: 2}
+  _onRestartLevel: {fileID: 11400000, guid: f9291feddb089f642a3b69569dcb04ab, type: 2}
   _requestNextWaveEvent: {fileID: 11400000, guid: 7ca9736b2c603b04b96b005babb75161, type: 2}
 --- !u!4 &945776156
 Transform:

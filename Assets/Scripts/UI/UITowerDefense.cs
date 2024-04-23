@@ -91,6 +91,9 @@ public class UITowerDefense : MonoBehaviour
     [SerializeField]
     private BoolEventChannelSO _onEndLevel = default;
 
+    [SerializeField]
+    private VoidEventChannelSO _onRestartLevel = default;
+
     [Header("Broadcasting to..")]
     [SerializeField]
     private IntEventChannelSO _onTowerRequested = default;
@@ -107,6 +110,7 @@ public class UITowerDefense : MonoBehaviour
         _onUpdatePlayerWave.OnEventRaised += SetPlayerWave;
 
         _onEndLevel.OnEventRaised += OnEndLevel;
+        _onRestartLevel.OnEventRaised += OnRestartLevel;
     }
 
     private void OnDisable()
@@ -118,6 +122,7 @@ public class UITowerDefense : MonoBehaviour
         _onUpdatePlayerWave.OnEventRaised -= SetPlayerWave;
 
         _onEndLevel.OnEventRaised -= OnEndLevel;
+        _onRestartLevel.OnEventRaised -= OnRestartLevel;
     }
 
     private void Awake() 
@@ -132,12 +137,18 @@ public class UITowerDefense : MonoBehaviour
         _endPanel.SetActive(false);
         _endPanelCG.alpha = 0;
 
+        OnTowerReset();
         SetPlayerLife(_gameSettings.StartingHealth);
         SetPlayerMoney(_gameSettings.StartingMoney);
 
         // Simply reset the wave text, don't launch the animation
         // The animation will be launch at the start of the game
         _wave.text = "1";
+    }
+
+    private void OnRestartLevel()
+    {
+        ResetUI();
     }
     
     /* ===== */

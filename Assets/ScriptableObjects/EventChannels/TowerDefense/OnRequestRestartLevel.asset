@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77a758f5749ea9a4c846ddb109f5aa3f, type: 3}
-  m_Name: OnRestartLevel
+  m_Name: OnRequestRestartLevel
   m_EditorClassIdentifier: 
-  _guid: f9291feddb089f642a3b69569dcb04ab
-  description: Raised by the GameManager to reset everything
+  _guid: bf1c30901d9651e448b466a5c716f6db
+  description: 'Raised by the Pause/EndScreen : request to the GameManager the restart
+    of the level'

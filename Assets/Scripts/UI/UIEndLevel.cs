@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,7 +29,7 @@ public class UIEndLevel : MonoBehaviour
 
     public void SetEndPanel(bool state)
     {
-        
+
     }
 
     public void RestartLevel()
@@ -47,7 +48,7 @@ public class UIEndLevel : MonoBehaviour
 
     private void DisableAllButtons()
     {   
-        _restartButton.interactable = true;
+        _restartButton.interactable = false;
         _mainMenuButton.interactable = false;
     }
 }

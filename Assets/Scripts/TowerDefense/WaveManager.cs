@@ -16,6 +16,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private GameObjectEventChannelSO _onReturnEnemy = default;
 
+    [SerializeField]
+    private VoidEventChannelSO _onRestartLevel = default;
+
     [Header("Broadcasting to..")]
     [SerializeField]
     private VoidEventChannelSO _requestNextWaveEvent = default;
@@ -26,6 +29,7 @@ public class WaveManager : MonoBehaviour
     private int _numberOfEnemiesToWait = 0;
 
     private Dictionary<EnemyType, EnemySettingsSO> _listOfEnemies;
+    private List<Enemy> _activeEnemies;
 
     private void Awake() 
     {
@@ -34,12 +38,16 @@ public class WaveManager : MonoBehaviour
 
     private void OnEnable() 
     {
+        _activeEnemies = new List<Enemy>();
+
         _onReturnEnemy.OnEventRaised += OnReturnEnemy;
+        _onRestartLevel.OnEventRaised += OnRestartLevel;
     }
 
     private void OnDisable() 
     {
         _onReturnEnemy.OnEventRaised -= OnReturnEnemy;
+        _onRestartLevel.OnEventRaised -= OnRestartLevel;
 
         StopAllCoroutines();
     }
@@ -95,6 +103,8 @@ public class WaveManager : MonoBehaviour
             enemy.transform.position = _spawnPoint.position;
             enemy.Initiate(_waypoints, enemySettings);
 
+            _activeEnemies.Add(enemy);
+
             yield return new WaitForSeconds(groupOfEnemies.TimeBetweenEnemies);
         }
     }
@@ -117,7 +127,7 @@ public class WaveManager : MonoBehaviour
     {
         Enemy currentEnemy = enemy.GetComponent<Enemy>();
 
-        _listOfEnemies[currentEnemy.enemySettings.EnemyType].EnemyPool.Return(currentEnemy);
+        DisposeOfEnemy(currentEnemy); 
 
         /* === */
 
@@ -126,6 +136,29 @@ public class WaveManager : MonoBehaviour
         if ( _numberOfEnemiesToWait <= 0 )
         {
             _requestNextWaveEvent.RaiseEvent();
+        }
+    }
+
+    private void DisposeOfEnemy(Enemy enemy)
+    {
+        _listOfEnemies[enemy.enemySettings.EnemyType].EnemyPool.Return(enemy);
+
+        _activeEnemies.Remove(enemy);
+    }
+
+    /* ===== */
+
+    private void OnRestartLevel()
+    {
+        StopAllCoroutines();
+
+        int numberOfActiveEnemies = _activeEnemies.Count - 1;
+
+        for ( int i = numberOfActiveEnemies; i >= 0; i-- )
+        {
+            Enemy enemy = _activeEnemies[i];
+
+            DisposeOfEnemy(enemy);
         }
     }
 }
