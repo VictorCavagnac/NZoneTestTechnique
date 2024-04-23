@@ -5,7 +5,7 @@ A simple tower defense made in approximately 20-23h~.
 Play here : https://victorcavagnac.github.io/NZoneTestTechniqueWebGL/
 
 Right mouse drag : Camera movement
-Left mouse click : Preview tower/Buy tower
+/ Left mouse click : Preview tower/Buy tower
 
 ## Overview
 
