@@ -71,6 +71,13 @@ public class UITowerDefense : MonoBehaviour
     [SerializeField]
     private float _endPanelFadeDuration = 2f;
 
+    [Header("Pause UI Settings")]
+    [SerializeField]
+    private UIPauseMenu _pauseUI = null;
+
+    [SerializeField]
+    private CanvasGroup _pauseCG = null;
+
     [Header("Common Settings")]
     [SerializeField]
     private GameSettingsSO _gameSettings = default;
@@ -94,6 +101,9 @@ public class UITowerDefense : MonoBehaviour
     [SerializeField]
     private VoidEventChannelSO _onRestartLevel = default;
 
+    [SerializeField]
+    private VoidEventChannelSO _onPause = default;
+
     [Header("Broadcasting to..")]
     [SerializeField]
     private IntEventChannelSO _onTowerRequested = default;
@@ -111,6 +121,8 @@ public class UITowerDefense : MonoBehaviour
 
         _onEndLevel.OnEventRaised += OnEndLevel;
         _onRestartLevel.OnEventRaised += OnRestartLevel;
+
+        _onPause.OnEventRaised += OnPause;
     }
 
     private void OnDisable()
@@ -123,6 +135,8 @@ public class UITowerDefense : MonoBehaviour
 
         _onEndLevel.OnEventRaised -= OnEndLevel;
         _onRestartLevel.OnEventRaised -= OnRestartLevel;
+
+        _onPause.OnEventRaised -= OnPause;
     }
 
     private void Awake() 
@@ -136,6 +150,9 @@ public class UITowerDefense : MonoBehaviour
     {
         _endPanel.SetActive(false);
         _endPanelCG.alpha = 0;
+
+        _pauseUI.gameObject.SetActive(false);
+        _pauseCG.alpha = 0;
 
         OnTowerReset();
         SetPlayerLife(_gameSettings.StartingHealth);
@@ -251,5 +268,15 @@ public class UITowerDefense : MonoBehaviour
         _endPanel.SetActive(true);
 
         _endPanelCG.DOFade(1, _endPanelFadeDuration);
+    }
+
+    /* ===== */
+
+    private void OnPause()
+    {
+        _pauseCG.alpha = 0;
+        _pauseCG.DOFade(1, 0.3f).SetUpdate(true);
+
+        _pauseUI.gameObject.SetActive(true);
     }
 }
