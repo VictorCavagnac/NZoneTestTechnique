@@ -4,7 +4,7 @@ A simple tower defense made in approximately 20-23h~.
 
 Play here : https://victorcavagnac.github.io/NZoneTestTechniqueWebGL/
 
-Right mouse drag ! Camera movement
+Right mouse drag : Camera movement
 Left mouse click : Preview tower/Buy tower
 
 ## Overview
@@ -41,6 +41,14 @@ Each part can be easily modified through ScriptableObjects found in `ScriptableO
 #### Login and Saving Scores (Removed from the build)
 
 For saving the player's progress, I've used the Unity Authentication and Cloud Save package. Unfortunately, the package doesn't seem to work/throws an error on WebGL, so I've had to remove this part from the build.
+
+### Missing Feature
+
+I haven't made the score and the AI that adapts to the player's actions for several reasons :
+
+1. The "score" is calculated according to how many hits taken to defeat the enemy. Given this, the player naturally buys towers to counter these enemies. But the AI will adapt to the player's towers and send enemies which will counter these towers.
+2. This type of feature doesn't make sense because the player is going to play a battle already lost in advance.
+3. For this feature to make sense, the player will need to know the next wave in advance. But even then, the AI will still adapt and the player effort to "strategize" will be meaningless.
 
 ### Known Bugs
 
