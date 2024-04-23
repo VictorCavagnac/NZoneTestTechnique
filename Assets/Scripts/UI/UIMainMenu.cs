@@ -26,7 +26,7 @@ public class UIMainMenu : MonoBehaviour
 
     private void OnEnable() 
     {
-        SetStats();
+        //SetStats();
     }
 
     private async void SetStats()

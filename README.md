@@ -2,9 +2,11 @@
 
 A simple tower defense made in approximately 20-23h~.
 
+Play here : https://victorcavagnac.github.io/NZoneTestTechniqueWebGL/
+
 ## Overview
 
-If you want to play the demo from the start, simply open the `Initialiation` scene.
+If you want to play the demo from the start, simply open the `Initialization` scene.
 Alternatively, you can open any non-manager scene _(For example the `GameplayLevel` scene, you'll launch the game right away)_ and the `SceneLoader.cs` will load any scene that is needed for the current opened scene.
 
 ### Functionalities
@@ -15,9 +17,9 @@ The `BuildingManager` script performs most of the work for managing towers :
 
 1. The `UITowerDefense` script loads buttons for all available towers. The `OnTowerRequested` is picked up by the `BuildingManager`.
 2. The `BuildingManager` loads a tower in preview mode and waits for another input from the player.
-3. The player confirms his request and the script checks if the tower can be placed at the chosen spot (`GridData.cs`), and if the player can afford it. Only then the tower is powered on.
+3. The player confirms his request and the script checks if the tower can be placed at the chosen spot _(`GridData`)_, and if the player can afford it. Only then the tower is powered on.
 
-#### Game/Waves/Enemies Configuration
+#### Game/Waves/Towers/Enemies Configuration
 
 Each part can be easily modified through ScriptableObjects found in `ScriptableObjects/Settings`.
 

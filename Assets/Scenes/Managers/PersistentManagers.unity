@@ -409,7 +409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10cfa9b417c737d4ebc9a52eb669df1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cameraSpeed: 15
+  _cameraSpeed: 8
   _zoomRate: 40
   _zoomDampening: 5
   _maxDistanceZoom: 10
@@ -596,7 +596,6 @@ MonoBehaviour:
   _loadLevel: {fileID: 11400000, guid: d741606df79baab41b5b13ea241d1d71, type: 2}
   _loadMenu: {fileID: 11400000, guid: 8e13ae442f8ff4e438df28bde933f081, type: 2}
   _coldStartup: {fileID: 11400000, guid: efa8fd99078a5294eadf67d4b44fd950, type: 2}
-  _reloadLevel: {fileID: 11400000, guid: 7a9dccc6388eb9b44b2b22fbf5677282, type: 2}
   _toggleLoadingScreen: {fileID: 11400000, guid: 444faa821aff02d44be31f00d60edef4, type: 2}
   _onSceneReady: {fileID: 11400000, guid: 004ac00232e757a4983f0842f304ba75, type: 2}
   _fadeRequestChannel: {fileID: 11400000, guid: ae544b95129e03248af129c7d0c31656, type: 2}

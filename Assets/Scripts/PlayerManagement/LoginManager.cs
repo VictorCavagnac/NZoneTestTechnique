@@ -44,14 +44,18 @@ public class LoginManager : MonoBehaviour
         PlayerAccountService.Instance.SignedIn += SignedIn;
     }
 
-    private async void SignedIn()
+    public async void SignedIn()
     {
         try
         {
+            /*
             var accessToken = PlayerAccountService.Instance.AccessToken;
             await SignInWithUnityAsync(accessToken);
+            */
 
-            isSignedIn = true;
+            Debug.Log("Try sign in anon");
+
+            await SignInAnonymouslyAsync();
         }
         catch (Exception ex)
         {
@@ -70,7 +74,7 @@ public class LoginManager : MonoBehaviour
     /// <summary>
 	/// Launch the Unity Auth services and gets back the player infos used by the SaveManager
 	/// </summary>
-    private async Task SignInWithUnityAsync(string accessToken)
+    public async Task SignInWithUnityAsync(string accessToken)
     {
         try
         {
@@ -78,6 +82,7 @@ public class LoginManager : MonoBehaviour
             Debug.Log("<color=green>== SignIn is successful ==</color>");
 
             _playerInfo = AuthenticationService.Instance.PlayerInfo;
+            isSignedIn = true;
 
             playerUsername = await AuthenticationService.Instance.GetPlayerNameAsync();
 
@@ -93,14 +98,17 @@ public class LoginManager : MonoBehaviour
         }
     }
 
-    private async Task SignInAnonymouslyAsync()
+    public async Task SignInAnonymouslyAsync()
     {
         try
         {
+            Debug.Log("Before..");
+
             await AuthenticationService.Instance.SignInAnonymouslyAsync();
             Debug.Log("Sign in anonymously succeeded!");
 
             _playerInfo = AuthenticationService.Instance.PlayerInfo;
+            isSignedIn = true;
 
             var name = await AuthenticationService.Instance.GetPlayerNameAsync();
 
