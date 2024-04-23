@@ -153,8 +153,6 @@ public class SceneLoader : MonoBehaviour
 		{
 			if (_currentlyLoadedScene.sceneReference.OperationHandle.IsValid())
 			{
-				Debug.Log("Unload");
-
 				// Unload the scene through its AssetReference, i.e. through the Addressable system
 				_currentlyLoadedScene.sceneReference.UnLoadScene();
 			}

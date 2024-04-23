@@ -67,18 +67,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private AudioCueEventChannelSO _sfxEvent = default;
 
-    [SerializeField]
-    private AudioCueEventChannelSO _musicEvent = default;
-
     [Header("Audio")]
     [SerializeField]
     private AudioConfigurationSO _sfxConfig = null;
-
-    [SerializeField]
-    private AudioConfigurationSO _musicConfig = null;
-
-    [SerializeField]
-    private AudioCueSO _musicToPlay = null;
 
     [SerializeField]
     private AudioCueSO _enemyDefeatSFX = null;
@@ -113,8 +104,6 @@ public class GameManager : MonoBehaviour
         _onRequestNextWave.OnEventRaised += OnRequestNextWave;
 
         _onRequestRestartLevel.OnEventRaised += OnRequestRestartLevel;
-
-        _musicEvent.RaisePlayEvent(_musicToPlay, _musicConfig);
     }
 
     private void OnDisable() 
