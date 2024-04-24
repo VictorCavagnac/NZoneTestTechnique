@@ -52,6 +52,5 @@ I haven't made the score and the AI that adapts to the player's actions for seve
 
 ### Known Bugs
 
-1. The audio doesn't work on WebGL builds. Since I've made my audio system with AudioMixer which is one of the audio features that are not available specifically on WebGL, you won't be able to hear anything.
-2. For the login/save system, I've used the Unity Authentication and Cloud Save services. Unfortunately, these seems to throw errors in WebGL builds that I have not been able to solve.
-3. There is a slight bug in game : If you try to preview a tower and want to switch preview or cancel your preview, the game will still try to buy the tower you tried to preview.
+1. For the login/save system, I've used the Unity Authentication and Cloud Save services. Unfortunately, these seems to throw errors in WebGL builds that I have not been able to solve.
+2. There is a slight bug in game : If you try to preview a tower and want to switch preview or cancel your preview, the game will still try to buy the tower you tried to preview.

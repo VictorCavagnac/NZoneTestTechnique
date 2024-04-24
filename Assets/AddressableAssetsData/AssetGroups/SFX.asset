@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: SFX
+  m_EditorClassIdentifier: 
+  m_GroupName: SFX
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 4c284e7eed485cb43bdb0d0267119640
+  m_SerializeEntries:
+  - m_GUID: b40c4da1c6ada9042896b4401e25aa04
+    m_Address: Assets/Audio/SFX
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 13dac9c27303a4a4b91d8b2ca7913a62, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 62eea280e1a0bcd469e39f3edf807df8, type: 2}
+    - {fileID: 11400000, guid: 84ee829fb572592448667c8173388e93, type: 2}

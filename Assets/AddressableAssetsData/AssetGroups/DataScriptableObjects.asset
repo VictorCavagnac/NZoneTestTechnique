@@ -22,6 +22,21 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3f284b59768814c4a940d2f15b024f42
+    m_Address: Assets/ScriptableObjects/SceneData
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 287a004ad07730f428258dec76e7c590
+    m_Address: Assets/ScriptableObjects/Settings
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 568f0ed0cc99c5f42882d693b21bdd30
+    m_Address: Assets/ScriptableObjects/TowerDefense
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 13dac9c27303a4a4b91d8b2ca7913a62, type: 2}
   m_SchemaSet:
